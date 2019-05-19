@@ -13,6 +13,7 @@
 # 00: Pakete laden ---------------------------------------------------------------
 library(dplyr)
 library(psych)
+library(ggplot2)
 
 
 
@@ -43,7 +44,11 @@ print(cor2)
 print(cor2, short = FALSE)
 
 # Korrelation zwischen den Variablen abi, alter und zuf.inh.1
+# plottet die Variablen, alter gegen zuf.inh.1 und abi gegen zuf.inh.1
+plot()
 
+ggplot()
+#führt eine Korrelationsanalyse durch
 auswahl<-data.frame(alter, abi, zuf.inh.1)
 cor(auswahl)
 
