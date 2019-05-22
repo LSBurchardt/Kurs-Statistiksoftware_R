@@ -52,10 +52,20 @@ class(d)
 
 # Datenformate
 
+a_vector<-c("x","z","x","y","x","x","y","y","x")
 
+a_matrix<-matrix(1:15,5,3)
 
+a_factor<-factor(a_vector)
 
+not_a_factor<-unclass(a_factor)   #levels der Daten gespeichert als Faktor werden gespeichert
 
+char5<-c("a", "b", "c", "d", "e")
+a_data_frame<-data.frame(a_matrix, char5)
+
+colnames(a_data_frame)<-c("Spalte 1", "Spalte 2", "Spalte 3 ", "Spalte 4")
+
+a_list<-list(a,b,c,d,char5,a_data_frame)
 # 04: R als Taschenrechner-------------------------------------------------------------
 
 # 05: Hilfe in R ---------------------------------------------------------------------
@@ -109,4 +119,3 @@ boxplot(erstis$alter~erstis$gruppe)
 pie(table(erstis$geschl))
 
 
-#Übunge

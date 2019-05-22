@@ -11,17 +11,18 @@
 #2. Kurstag
 
 # 00: Pakete laden ---------------------------------------------------------------
+
 library(dplyr)
 library(psych)
 library(ggplot2)
 
-
-
 # 01: Daten einlesen --------------------------------------------------------------
 
+      #...
 
 # 02: Good Coding Practice
 
+      #...
 
 # 03: Datenmanagment
 
@@ -48,7 +49,28 @@ nach_gruppe_alter<-erstis %>%
 
 # 03c: Datensätze kombinieren
 
+bind_rows()
+
+bind_cols()
+
+erstis_na_omit<-na.omit(erstis)     #alle Zeilen, die NAs enthalten, werden rausgeschmissen
+mean_erstis_na_omit<-summarise_all(erstis_na_omit, funs(mean)) #"mean" wird auf alle Spalten angewendet
+
 # 04 Kreuztabellen ----------------------------------------------------------
+
+attach(erstis)
+
+#absolute Häufigkeiten
+table(berlin, geschl)
+addmargins(table(berlin, geschl))
+
+#relative Häufigkeiten
+
+prop.table(table(berlin, geschl))
+
+addamrgins(prob.table(table(geschl,berlin)))
+
+
 
 # 05: lineare Regression und Korrelation -----------------------------------------------------------
 
@@ -56,6 +78,7 @@ nach_gruppe_alter<-erstis %>%
 x <- c(-2, -1, -0.8, -0.3, 0, 0.5, 0.6, 0.7, 1, 1.2)
 y <- c(1.9, 0.6, 0.5, 0.8, -0.4, -0.9, -0.7, -0.1, -1.7, -0.2)
 
+# lineare Regression mit lm()
 plot(x,y)
 fm<-lm(y~x)  #fm = fittet model, mit der Funktion lm (linear model) wird die lineare Regression berechnet
              # sie wird berechnet für die Formel y~x, in der y durch x erklärt werden soll 
@@ -63,6 +86,7 @@ fm<-lm(y~x)  #fm = fittet model, mit der Funktion lm (linear model) wird die lin
 plot(x,y,xlim = c(-3,3), ylim = c(-3,3), pch= 19)   #Daten werden erneut geplotet 
 abline(fm,col = "red" )                             # und um die Trendlinie erweitert
 
+#Korrelation mit cor() und corr.test()
 xy<-data.frame(x,y)         # wir wollen wissen wie stark der Zusammenghang ist und rechnen eine Korrelation
 cor1<-cor(xy)               # simpelste Version der Pearson-Korrelation (Produkt-Moment Korrekation) in R
 print(cor1)                 # im Output werden nur die Regressionskoeffizienten dargestellt
