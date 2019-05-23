@@ -18,7 +18,7 @@ load('Daten/Erstis/erstis.RData')       # Dateiname bzw. Pfad in Anführungszeic
 
 #Variante 2: read.csv()
 
-data<-read.csv('Erstis.csv', sep= ";")  # sep = Separator der Spalten, Dateinamen bzw. Pfad in Anführungszeichen
+data<-read.csv('../Erstis.csv', sep= ";")  # sep = Separator der Spalten, Dateinamen bzw. Pfad in Anführungszeichen
 
 #Variante 3: Daten aus dem File-Tab importieren
 # gewünschte Datei auswählen --> Import Dataset --> gewünschte Einstellungen wählen --> Import

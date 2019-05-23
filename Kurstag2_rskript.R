@@ -20,9 +20,15 @@ library(ggplot2)
 
       #...
 
-# 02: Good Coding Practice
+# 02: Good Coding Practice und Github
 
       #...
+# Github
+# um ein Paket von Github zu laden brauchen wir das Paket "devtools"
+install.packages("devtools", lib ="E:/R Kurs/Kurs-Statistiksoftware-R/Lib")
+
+#dann kann man Pakete von Github laden
+devtools::install_github("kassambara/ggpubr")   #ggpubr: Publication ready plots
 
 # 03: Datenmanagment
 
