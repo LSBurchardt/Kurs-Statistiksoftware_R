@@ -14,14 +14,14 @@
 
 #Variante 1: .RData laden mit load()
 
-load('Daten/Erstis/erstis.RData')       # Dateiname bzw. Pfad in Anführungszeichen
+load('Daten/Erstis/erstis.RData')       # Dateiname bzw. Pfad in Anfuehrungszeichen
 
 #Variante 2: read.csv()
 
-data<-read.csv('../Erstis.csv', sep= ";")  # sep = Separator der Spalten, Dateinamen bzw. Pfad in Anführungszeichen
+data<-read.csv('../Erstis.csv', sep= ";")  # sep = Separator der Spalten, Dateinamen bzw. Pfad in Anfuehrungszeichen
 
 #Variante 3: Daten aus dem File-Tab importieren
-# gewünschte Datei auswählen --> Import Dataset --> gewünschte Einstellungen wählen --> Import
+# gewuenschte Datei auswählen --> Import Dataset --> gewuenschte Einstellungen waehlen --> Import
 
 #02: Daten speichern ---------------------------------------------------------------
 #Speichert die eben geladenen Daten auf unterschiedliche Varianten
@@ -58,7 +58,7 @@ a_matrix<-matrix(1:15,5,3)
 
 a_factor<-factor(a_vector)
 
-not_a_factor<-unclass(a_factor)   #levels der Daten gespeichert als Faktor werden gespeichert
+not_a_factor<-unclass(a_factor)   #levels der Daten mit numerischer Info
 
 char5<-c("a", "b", "c", "d", "e")
 a_data_frame<-data.frame(a_matrix, char5)
@@ -72,10 +72,10 @@ a_list<-list(a,b,c,d,char5,a_data_frame)
 
 # 06: Pakete in R --------------------------------------------------------------------
 
-# Pakete enthalten weitere Funktionen und Funktionisgruppen, zusätzlich zu den Möglichkeiten der Basisversion.
-# Sie können über Tools --> Install Packages geladen werden, oder über den Befehl: install.packages()
+# Pakete enthalten weitere Funktionen und Funktionisgruppen, zusaetzlich zu den Moeglichkeiten der Basisversion.
+# Sie koennen ueber Tools --> Install Packages geladen werden, oder ueber den Befehl: install.packages()
 
-#Installiert das Paket "ggplot2" und das Paket "dplyr" jeweils über einen der beiden Möglichkeiten
+#Installiert das Paket "ggplot2" und das Paket "dplyr" jeweils über einen der beiden Moeglichkeiten
 
 install.packages("")
 
@@ -83,7 +83,7 @@ install.packages("")
 
 install.packages("",lib= "path of your project")
 
-# Lade die Pakete für diese Session mit require oder library
+# Lade die Pakete fuer diese Session mit require oder library
   
 library(zoo)                          # gibt eine Fehlermeldung wenn das Paket nicht installiert ist
 
