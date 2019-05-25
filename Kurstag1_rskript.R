@@ -77,26 +77,33 @@ a_list<-list(a,b,c,d,char5,a_data_frame)
 
 #Installiert das Paket "ggplot2" und das Paket "dplyr" jeweils über einen der beiden Moeglichkeiten
 
-install.packages("")
+install.packages("ggplot2")
 
 # Lege eine eigene "Paket Library" für diesen Kurs an und installiere die beiden Pakete in diesem Ordner
 
-install.packages("",lib= "path of your project")
+install.packages("ggplot2",lib= "E:/R Kurs/Kurs-Statistiksoftware-R")
 
 # Lade die Pakete fuer diese Session mit require oder library
   
 library(zoo)                          # gibt eine Fehlermeldung wenn das Paket nicht installiert ist
 
-require(ggplot2)                      # gibt eine Warnung wenn das Paket nicht installiert ist
+require(zoo)                      # gibt eine Warnung wenn das Paket nicht installiert ist
 
 # 07: Abbildungen mit ggplot und Basisfunktionen--------------------------------------------------------
 
 library(ggplot2)
 
 #Grundstruktur von ggplot am Beispiel eines Scatterplots 
-a<-ggplot(data= erstis, aes(x= gebjahr, y = alter))+
+colors<-c(rep("red", 10), rep("blue", 10), rep("green", 10), rep("darkred", 9))
+a<-ggplot(data= erstis, aes(x= gebjahr))+
+  geom_histogram(binwidth = 1, fill = colors)
+
+a
+
+b<-ggplot(data= erstis, aes(x= gebjahr, y= alter))+
   geom_point()+
   geom_line()
+b
 
 #Titel und Achsen hinzufügen/ändern
 
@@ -117,5 +124,41 @@ boxplot(alter~gruppe, data = erstis)
 boxplot(erstis$alter~erstis$gruppe)
 
 pie(table(erstis$geschl))
+
+#histogram mit ggplot
+
+hist_alter<-ggplot(data= erstis, aes(x= alter))+
+  geom_histogram(binwidth= 10, fill = c("red", "blue", "green", "yellow"))+
+  labs(title= "Häufigkeitsverteilung Alter", x = "Alter", y= "Anzahl")+
+  theme_bw(base_size= 15)
+  #theme(axis.title = element_text(size = 14),title = element_text(size= 14) )
+hist_alter
+
+# boxplot Alter Berufstaetigkeit
+
+boxplot_Stim1<-ggplot(data=erstis, aes(x= job, y= alter))+
+  geom_boxplot(outlier.shape=20)
+boxplot_Stim1
+
+# Histogram Basisfunktion, Zufriedenheit
+
+erstis$zuf.inh.1 %>% 
+hist(main= "Zufriedenheit mit Studieninhalten",
+     xlab = "Grad der Zufriedenheit",ylab= "Häufigkeit", 
+     breaks= 3, col = c("blue", "darkblue", "navy"), 
+     labels = c("unzufrieden", "mittel", "zufrieden"),
+     ylim= c(0,100),
+     cex.axis= 1.5, cex.main= 1.5, cex.lab= 1.5)
+legend("topleft", legend = c("unzufrieden", "mittel", "zufrieden"),
+       fill = c("blue", "darkblue", "navy"))
+
+#Basisplot
+
+pie(table(erstis$wohnort.alt),
+    labels= c("altes Bundesland", "neues Bundesland", "Berlin", "Ausland"),
+     radius = 1, edges= 500)
+
+
+
 
 

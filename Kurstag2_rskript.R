@@ -68,6 +68,14 @@ erstis %>%
      group_by(gruppe) %>% 
      summarise_at(vars(alter), list(~mean(.,na.rm=TRUE)))
 
+# NAs filtern um Alter nach Geschlecht darzustellen
+
+mean_nach_alter_geschlecht_2<-erstis %>% 
+  filter(geschl == "weiblich" | geschl == "männlich") %>%  
+  #filter(!is.na(geschl)) %>%    #!is.na bedeutet: ist kein "missing value"
+    group_by(geschl) %>% 
+    summarise_at(vars(alter), list(~mean(.,na.rm= TRUE)))
+
 frauen<-erstis %>% 
   filter(geschl == "weiblich")
 
@@ -91,16 +99,28 @@ mean_erstis_na_omit<-summarise_all(erstis_na_omit, funs(mean)) #"mean" wird auf 
 attach(erstis)
 
 #absolute Häufigkeiten
-table(berlin, geschl)
+table1<-table(berlin, geschl, useNA = "ifany")
 addmargins(table(berlin, geschl))
 
 #relative Häufigkeiten
 
-prop.table(table(berlin, geschl))
+table2<-prop.table(table(berlin, geschl, useNA = "ifany"))
+addmargins(prob.table(table(geschl,berlin)))
 
-addamrgins(prob.table(table(geschl,berlin)))
+#Häufigkeitstabellen mit dem Pipe Operator
+#Variante 1
+tab_berlin_geschl<-table(berlin, geschl)
+  
+tab_berlin_geschl %>% 
+prop.table() %>% 
+  addmargins() %>% 
+  print(digits= 3)
 
-
+#Variante2
+table(berlin,geschl) %>% 
+  prop.table() %>% 
+  addmargins()
+print(digits = 2)
 
 # 05: lineare Regression und Korrelation -----------------------------------------------------------
 
@@ -115,6 +135,7 @@ fm<-lm(y~x)  #fm = fittet model, mit der Funktion lm (linear model) wird die lin
 
 plot(x,y,xlim = c(-3,3), ylim = c(-3,3), pch= 19)   #Daten werden erneut geplotet 
 abline(fm,col = "red" )                             # und um die Trendlinie erweitert
+fm2<-lm(alter~ abi)
 
 #Korrelation mit cor() und corr.test()
 xy<-data.frame(x,y)         # wir wollen wissen wie stark der Zusammenghang ist und rechnen eine Korrelation
@@ -129,7 +150,11 @@ print(cor2, short = FALSE)
 # plottet die Variablen, alter gegen zuf.inh.1 und abi gegen zuf.inh.1
 plot()
 
-ggplot()
+ggplot(erstis, aes(x= alter, y= zuf.inh.1))+
+  geom_point(color= "skyblue", shape = "square")+
+  geom_smooth(method = 'lm', se = FALSE)
+  
+  
 #führt eine Korrelationsanalyse durch
 auswahl<-data.frame(alter, abi, zuf.inh.1)
 cor(auswahl)
@@ -156,12 +181,21 @@ cor5<-auswahl %>%
 #t.test()
 
 boxplot(erstis$alter~erstis$geschl)
+
+alter_frauen <-erstis %>% 
+  filter(geschl == "weiblich") %>% 
+  select(alter)
+
+alter_maenner <-erstis %>% 
+  filter(geschl == "männlich") %>% 
+  select(alter)
+
 res_t_test<-t.test(alter_frauen,alter_maenner)
 
 #Unterscheiden sich die Gruppen hinsichtlich der Alterszusammensetzung?
+res_aov<-aov (alter~gruppe, data = erstis)
 
-res_aov <- aov (gruppe~alter, data = erstis)
-
+summary(res_aov)
 
 
 
