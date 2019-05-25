@@ -20,17 +20,17 @@ library(ggplot2)
 
       #...
 
-# 02: Good Coding Practice und Github
+# 02: Good Coding Practice und Github ----
 
       #...
 # Github
 # um ein Paket von Github zu laden brauchen wir das Paket "devtools"
-install.packages("devtools", lib ="E:/R Kurs/Kurs-Statistiksoftware-R/Lib")
+install.packages("devtools")
 
 #dann kann man Pakete von Github laden
 devtools::install_github("kassambara/ggpubr")   #ggpubr: Publication ready plots
 
-# 03: Datenmanagment
+# 03: Datenmanagment-----
 
 # 03a: Teilmengen bilden
 
@@ -48,10 +48,34 @@ var_uni<-erstis %>%
 
 #Wofür kann die Funktion group_by() gebraucht werden?
 
+erstis %>% 
+  group_by(gruppe) %>% 
+  summarise_at(vars(zuf.inh.1), funs(mean(.,na.rm = TRUE)))
+
+erstis %>% 
+  group_by(gruppe) %>% 
+  summarise_at(vars(alter), list(~mean(.,na.rm=TRUE)))
+
+
 #Sortiert den Datensatz nach Gruppe und Alter
 
 nach_gruppe_alter<-erstis %>% 
   arrange(gruppe, alter)
+
+#gruppieren nach gruppe, mittelwert von alter
+
+erstis %>% 
+     group_by(gruppe) %>% 
+     summarise_at(vars(alter), list(~mean(.,na.rm=TRUE)))
+
+frauen<-erstis %>% 
+  filter(geschl == "weiblich")
+
+frauen.alter.mean<-frauen$alter %>% 
+  mean(.,na.rm=TRUE)
+#chaining
+
+
 
 # 03c: Datensätze kombinieren
 
