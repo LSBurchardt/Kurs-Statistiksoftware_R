@@ -60,13 +60,13 @@ for (year in c(2010,2011,2012,2013,2014,2015)){
 # 1. Baut einen for-loop um den Median von a,b,c und d zu berechnen
 # https://r4ds.had.co.nz/iteration.html
 
-#1. Platz für Output schaffen
+  #1. Platz für Output schaffen
 
 
-#2. Sequenz definieren
+  #2. Sequenz definieren
 
 
-#3. Was soll entlang der Sequenz getan werden?  
+  #3. Was soll entlang der Sequenz getan werden?  
  
 #2. Berechnet den Mittelwert jeder Spalte in „mtcars“ mit einem loop
 # mtcars ist ein in R integrierter Datensatz und kann direkt angesprochen werden
@@ -83,6 +83,8 @@ install.packages("nycflights13")
 view(iris)
 
 #5. Erzeugt 10 Zufallszahlen einer Normalverteilung um die Mittelwerte μ=−10, 0, 10, and 100. 
+
+rnorm(n, mean = x )
 
 # 03: if Abfragen -------------------------------------------------------
 
